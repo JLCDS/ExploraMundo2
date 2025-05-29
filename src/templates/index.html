@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agencia de Viajes Turísticos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-titulo">
+            <img src="{{ url_for('static', filename='images/avion.png') }}" alt="Logo Agencia" class="logo-animado">
+            <h1 class="titulo-animado">Explora el Mundo con Nosotros</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#destinos">Destinos</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="destinos">
+            <h2>Destinos Turísticos</h2>
+            <div class="carrusel-contenedor">
+                <button class="carrusel-btn carrusel-btn-izq">&#8592;</button>
+                <div class="carrusel-destinos">
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/paris.jpg') }}" alt="París">
+                        <h3>París</h3>
+                        <p>La ciudad del amor y la luz.</p>
+                        <p class="precio">Precio: <span>USD 1200</span></p>
+                        <button class="btn-oferta" data-descuento="15">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='paris') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/roma.jpg') }}" alt="Roma">
+                        <h3>Roma</h3>
+                        <p>Historia y cultura en cada rincón.</p>
+                        <p class="precio">Precio: <span>USD 1100</span></p>
+                        <button class="btn-oferta" data-descuento="10">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='roma') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/colombia.jpg') }}" alt="Colombia">
+                        <h3>Colombia</h3>
+                        <p>Colores, café, montañas y playas en un solo país mágico.</p>
+                        <p class="precio">Precio: <span>USD 900</span></p>
+                        <button class="btn-oferta" data-descuento="20">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='colombia') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/nuevayork.jpg') }}" alt="Nueva York">
+                        <h3>Nueva York</h3>
+                        <p>La ciudad que nunca duerme, llena de energía y rascacielos.</p>
+                        <p class="precio">Precio: <span>USD 1600</span></p>
+                        <button class="btn-oferta" data-descuento="17">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='nuevayork') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/rio.jpg') }}" alt="Río de Janeiro">
+                        <h3>Río de Janeiro</h3>
+                        <p>Playas, samba y el Cristo Redentor te esperan en Brasil.</p>
+                        <p class="precio">Precio: <span>USD 1000</span></p>
+                        <button class="btn-oferta" data-descuento="14">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='rio') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/sidney.jpg') }}" alt="Sídney">
+                        <h3>Sídney</h3>
+                        <p>Descubre la icónica Ópera y las playas australianas.</p>
+                        <p class="precio">Precio: <span>USD 1700</span></p>
+                        <button class="btn-oferta" data-descuento="18">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='sidney') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                    <div class="destino-card">
+                        <img src="{{ url_for('static', filename='images/tokio.jpg') }}" alt="Tokio">
+                        <h3>Tokio</h3>
+                        <p>Modernidad y tradición en la vibrante capital de Japón.</p>
+                        <p class="precio">Precio: <span>USD 1500</span></p>
+                        <button class="btn-oferta" data-descuento="12">Mostrar Oferta</button>
+                        <p class="oferta" style="display:none;"></p>
+                        <a href="{{ url_for('infoTuris', nombre='tokio') }}" class="btn-vermas">Ver más</a>
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-btn-der">&#8594;</button>
+            </div>
+        </section>
+
+        <section id="ofertas">
+            <h2>Ofertas Especiales</h2>
+            <p>¡Descubre nuestras promociones exclusivas para tus próximas vacaciones!</p>
+            <ul>
+              {% for paquete in paquetes %}
+                <li><b>{{ paquete.nombre }}</b>: {{ paquete.descripcion }}</li>
+              {% endfor %}
+            </ul>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <section id="cotizador">
+            <h2>Cotiza tu viaje</h2>
+            <form id="form-cotizar">
+                <label>Destino:
+                    <select id="destino" required>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="san_andres">San Andrés</option>
+                    </select>
+                </label>
+                <label>Personas:
+                    <input type="number" id="personas" min="1" value="1" required>
+                </label>
+                <label>Días:
+                    <input type="number" id="dias" min="1" value="1" required>
+                </label>
+                <button type="submit">Calcular</button>
+            </form>
+            <div id="resultado-cotizacion" style="margin-top: 15px; font-weight: bold; color: #1a73e8;"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Agencia de Viajes Turísticos. Todos los derechos reservados.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
